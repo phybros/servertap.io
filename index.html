@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style type="text/css">
+    body {
+      font-size: 14pt;
+      background: #333;
+      color: white;
+      font-family: 'Lato', 'Helvetica Neue', 'Arial', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+    }
+
+    a {
+      color: #0abaff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    #content {
+      margin: 30px auto;
+      max-width: 600px;
+      padding: 10px 30px;
+    }
+
+    #cta {
+      text-align: center;
+    }
+  </style>
+  <title>ServerTap - a JSON API for Minecraft servers</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <link href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css"
+        rel="stylesheet">
+  <style type="text/css">
+    pre.prettyprint {
+      font-size: 11pt;
+      border-radius: 5px;
+      padding: 20px;
+      overflow: scroll;
+      scrollbar-width: none;
+      /* Firefox 64 */
+      -ms-overflow-style: none;
+      /* Internet Explorer 11 */
+    }
+
+    pre.prettyprint::-webkit-scrollbar {
+      /** WebKit */
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="content">
+    <h1>ServerTap</h1>
+
+    <p>A JSON API for your Bukkit/Spigot/Paper powered Minecraft server.</p>
+    <p>ServerTap makes it easy to integrate
+      other applications with your server to create new and exciting experiences for your players.
+    </p>
+    <div id="cta">
+      <p>
+        <!-- Place this tag where you want the button to render. -->
+        <a class="github-button" href="https://github.com/phybros/servertap" data-icon="octicon-star" data-size="large"
+           data-show-count="true" aria-label="Star phybros/servertap on GitHub">Star</a>
+        <!-- Place this tag where you want the button to render. -->
+        <a class="github-button" href="https://github.com/phybros/servertap/fork" data-icon="octicon-repo-forked"
+           data-size="large" data-show-count="true" aria-label="Fork phybros/servertap on GitHub">Fork</a>
+      </p>
+      <p>
+        <a href="https://discord.gg/tG4AEt7">
+          <img src="discord.png" alt="Join us on Discord!" title="Join us on Discord!" height="96" width="300" />
+        </a>
+      </p>
+    </div>
+
+    <h2>Examples</h2>
+
+    <p>Get a list of all online players</p>
+    <pre class="prettyprint lang-js">
+$ curl 'http://myserver.com:4567/v1/players'
+
+[
+  {
+    "uuid": "55f584e4-f095-48e0-bb8a-eb5c87ffe494",
+    "displayName": "phybros",
+    "address": "localhost",
+    "port": 58529,
+    "exhaustion": 3.5640976,
+    "exp": 0.45454547,
+    "whitelisted": false,
+    "banned": false,
+    "op": true
+  }
+]</pre>
+    <p>Get server information</p>
+    <pre class="prettyprint lang-js">
+$ curl 'http://myserver.com:4567/v1/server'
+
+{
+  "name": "Paper",
+  "motd": "This is my MOTD",
+  "version": "git-Paper-89 (MC: 1.15.2)",
+  "bukkitVersion": "1.15.2-R0.1-SNAPSHOT",
+  "tps": "20.02",
+  "health": {
+    "cpus": 4,
+    "uptime": 71,
+    "totalMemory": 2000158720,
+    "maxMemory": 2000158720,
+    "freeMemory": 1448998104
+  },
+  "bannedIps": [],
+  "bannedPlayers": [],
+  "whitelistedPlayers": [
+    {
+      "uuid": "55f584e4-f095-48e0-bb8a-eb5c87ffe494",
+      "name": "phybros"
+    }
+  ]
+}</pre>
+
+    <p>Give a player money (requires Vault-compatible economy plugin)</p>
+    <pre class="prettyprint lang-js">
+$ curl -X POST \
+'http://myserver.com:4567/v1/economy/pay' \
+--data-urlencode 'uuid=55f584e4-f095-48e0-bb8a-eb5c87ffe494' \
+--data-urlencode 'amount=100'
+
+"success"</pre>
+  </div>
+
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
+</html>

@@ -1,2 +1,4 @@
-# servertap.io
-The website for ServerTap
+# ServerTap.io
+
+The source for the ServerTap website (https://servertap.io)
+
